@@ -1,9 +1,16 @@
-def raise_to_the_degrees(number, max_degree):
-    i = 0
-    for _ in range(max_degree):
-        yield number**i
-    i += 1
-res = raise_to_the_degrees(122345, 500)
-print(res)
-for _ in res:
-    print(_)
+class GeneratorIterable:
+    def __init__(self, data):
+        self.data = data
+
+    def __iter__(self):
+        for item in self.data:
+            yield  self.generator(item)
+
+    def generator(self, item):
+        return item ** 2
+
+if __name__ == "__main__":
+    data = [1, 2, 3, 4, 5]
+    gen_iterable = GeneratorIterable(data)
+    for result in gen_iterable:
+        print(result)
